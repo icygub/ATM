@@ -3,13 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.Storage;
 
-namespace ATM.Business
+namespace ATM.Data
 {
     public class Database
     {
         private List<User> _db = new List<User>();
-        private readonly string _dbFile = $"{Environment.CurrentDirectory}\\db.json";
+        private readonly StorageFolder _installationFolder = ApplicationData.Current.LocalFolder;
+        private readonly string _dbFile = @"db.json";
         public List<User> Users => _db;
         public bool Test { get; set; }
 
@@ -18,13 +21,13 @@ namespace ATM.Business
             LoadDb();
         }
 
-
-        private void LoadDb()
+        private async void LoadDb()
         {
-            if (!File.Exists(_dbFile)) return;
-            if (Test && File.Exists(_dbFile)) File.Delete(_dbFile); 
+            var file = await _installationFolder.CreateFileAsync(_dbFile, CreationCollisionOption.OpenIfExists);
 
-            var db = File.ReadAllText(_dbFile);
+            if( Test) await FileIO.WriteTextAsync(file, "");
+
+            var db = await FileIO.ReadTextAsync(file);
             _db = string.IsNullOrEmpty(db) ? new List<User>() : JsonConvert.DeserializeObject<List<User>>(db);
         }
 
@@ -33,10 +36,11 @@ namespace ATM.Business
             return Users.First(u => u.Username == username && u.Password == password);
         }
 
-        public void Save()
+        public async Task Save()
         {
+            var file = await _installationFolder.CreateFileAsync(_dbFile, CreationCollisionOption.OpenIfExists);
             var json = JsonConvert.SerializeObject(_db);
-            File.WriteAllText(_dbFile, json);
+            await Windows.Storage.FileIO.WriteTextAsync(file, json);
         }
     }
 }
