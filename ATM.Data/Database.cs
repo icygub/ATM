@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -11,36 +11,79 @@ namespace ATM.Data
     public class Database
     {
         private List<User> _db = new List<User>();
-        private readonly StorageFolder _installationFolder = ApplicationData.Current.LocalFolder;
-        private readonly string _dbFile = @"db.json";
-        public List<User> Users => _db;
+        private readonly StorageFolder _storageFolder = ApplicationData.Current.LocalFolder;
+        private StorageFile _dbFile;
         public bool Test { get; set; }
+        private static Database _instance;
 
-        public Database()
+        private Database()
         {
             LoadDb();
         }
 
+        public static Database GetInstance()
+        {
+            return _instance ?? (_instance = new Database());
+        }
+
+        private async Task CreateFile()
+        {
+            _dbFile = await _storageFolder.CreateFileAsync("db.json", CreationCollisionOption.OpenIfExists);
+        }
+
         private async void LoadDb()
         {
-            var file = await _installationFolder.CreateFileAsync(_dbFile, CreationCollisionOption.OpenIfExists);
+            await CreateFile();
 
-            if( Test) await FileIO.WriteTextAsync(file, "");
+            var db = await FileIO.ReadTextAsync(_dbFile);
+            Debug.WriteLine("Reading File");
+            Debug.WriteLine(db);
+            Debug.WriteLine(JsonConvert.DeserializeObject<List<User>>(db));
 
-            var db = await FileIO.ReadTextAsync(file);
-            _db = string.IsNullOrEmpty(db) ? new List<User>() : JsonConvert.DeserializeObject<List<User>>(db);
+            if (string.IsNullOrEmpty(db))
+            {
+                Debug.WriteLine("Vazio");
+                _db = new List<User>();
+            }
+            else
+            {
+                Debug.WriteLine("Serializou");
+                var deserializeObject = JsonConvert.DeserializeObject<List<User>>(db);
+                Debug.WriteLine(deserializeObject);
+
+                _db = deserializeObject;
+            }
+        }
+
+        public  async void CleanFile()
+        {
+            await FileIO.WriteTextAsync(_dbFile, "");
+        }
+
+        private async Task SaveToFile()
+        {
+            var json = JsonConvert.SerializeObject(_db);
+            await FileIO.WriteTextAsync(_dbFile, json);
         }
 
         public User GetUserByUsernameAndPassword(string username, string password)
         {
-            return Users.First(u => u.Username == username && u.Password == password);
+            return _db.First(u => u.Username == username && u.Password == password);
         }
 
-        public async Task Save()
+        public async void Save()
         {
-            var file = await _installationFolder.CreateFileAsync(_dbFile, CreationCollisionOption.OpenIfExists);
-            var json = JsonConvert.SerializeObject(_db);
-            await Windows.Storage.FileIO.WriteTextAsync(file, json);
+            await SaveToFile();
+        }
+
+        public void AddUser(User user)
+        {
+            _db.Add(user);
+        }
+
+        public List<User> GetUsers()
+        {
+            return _db;
         }
     }
 }

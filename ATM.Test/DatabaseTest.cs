@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Windows.Media.Audio;
 using ATM.Data;
+using Windows.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ATM.Test
@@ -7,17 +10,18 @@ namespace ATM.Test
     [TestClass]
     public class DatabaseTest
     {
-
         [TestMethod]
-        public async Task Get_DB_Information()
+        public void Get_DB_Information()
         {
-            var db = new Database{Test = true};
-            
-            db.Users.Add(new User{Name = "Joe Doe"});
-            await db.Save();
+            var db = Database.GetInstance();
 
-            Assert.AreEqual(1, db.Users.Count);
+            db.AddUser(new User {Name = "Joe Doe"});
+
+            db.Save();
+
+            var users = db.GetUsers();
+
+            Assert.AreEqual(1, users.Count);
         }
-
     }
 }

@@ -7,9 +7,10 @@ namespace ATM.Data
     {
         public static User Login(string accountNumber, string password)
         {
-            var db = new Database();
+            var db = Database.GetInstance();
+            var users = db.GetUsers();
 
-            var user = db.Users.First(u => u.CheckingAccount.Number.Equals(accountNumber) && u.Password.Equals(password));
+            var user = users.First(u => u.CheckingAccount.Number.Equals(accountNumber) && u.Password.Equals(password));
 
             if (user == null)
             {
