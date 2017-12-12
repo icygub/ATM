@@ -22,9 +22,17 @@ namespace ATM.Data
                 throw new AuthenticationException("Account number or password invalid");
             }
 
-            var user = new User();
+            var checkingAccount = new CheckingAccount("123456789");
+            checkingAccount.Deposit(100000);
+            var savingsAccount = new SavingsAccount("987654321");
+            savingsAccount.Deposit(100000);
 
-            user.Logged = true;
+            var user = new User(checkingAccount, savingsAccount)
+            {
+                Name = "Joe Doe",
+                Logged = true
+            };
+
             return user;
         }
     }

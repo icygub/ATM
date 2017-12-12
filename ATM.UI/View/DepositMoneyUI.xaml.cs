@@ -34,7 +34,7 @@ namespace ATM.UI.View
 
         private void GoToTransaction(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(TransactionUI));
+            this.Frame.Navigate(typeof(LoadingTransactionPage));
         }
     }
 }

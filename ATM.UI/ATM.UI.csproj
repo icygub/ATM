@@ -98,40 +98,49 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\BaseViewModel.cs" />
+    <Compile Include="Model\CompletedTransactionModel.cs" />
     <Compile Include="Model\DelegateCommand.cs" />
+    <Compile Include="Model\EnterAmountModel.cs" />
+    <Compile Include="Model\InsertCreditCardModel.cs" />
+    <Compile Include="Model\InsertPinModel.cs" />
+    <Compile Include="Model\LoadTransactionModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\ObservableObject.cs" />
+    <Compile Include="Model\SelectAccountModel.cs" />
+    <Compile Include="Model\SelectAmountModel.cs" />
+    <Compile Include="Model\UserPageModel.cs" />
     <Compile Include="Model\ViewModalLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\CreditCardPinUI.xaml.cs">
-      <DependentUpon>CreditCardPinUI.xaml</DependentUpon>
+    <Compile Include="View\InsertPinPage.xaml.cs">
+      <DependentUpon>InsertPinPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DepositMoneyUI.xaml.cs">
       <DependentUpon>DepositMoneyUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EnterAmountUI.xaml.cs">
-      <DependentUpon>EnterAmountUI.xaml</DependentUpon>
+    <Compile Include="View\EnterAmountPage.xaml.cs">
+      <DependentUpon>EnterAmountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\FinalPageUI.xaml.cs">
-      <DependentUpon>FinalPageUI.xaml</DependentUpon>
+    <Compile Include="View\CompletedTransactionPage.xaml.cs">
+      <DependentUpon>CompletedTransactionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\InsertCreditCardUI.xaml.cs">
-      <DependentUpon>InsertCreditCardUI.xaml</DependentUpon>
+    <Compile Include="View\InsertCreditCardPage.xaml.cs">
+      <DependentUpon>InsertCreditCardPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LogInUI.xaml.cs">
-      <DependentUpon>LogInUI.xaml</DependentUpon>
+    <Compile Include="View\LogInPage.xaml.cs">
+      <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SelectAccountUI.xaml.cs">
-      <DependentUpon>SelectAccountUI.xaml</DependentUpon>
+    <Compile Include="View\SelectAccountPage.xaml.cs">
+      <DependentUpon>SelectAccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SelectAmountUI.xaml.cs">
-      <DependentUpon>SelectAmountUI.xaml</DependentUpon>
+    <Compile Include="View\SelectAmountPage.xaml.cs">
+      <DependentUpon>SelectAmountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TransactionUI.xaml.cs">
-      <DependentUpon>TransactionUI.xaml</DependentUpon>
+    <Compile Include="View\LoadingTransactionPage.xaml.cs">
+      <DependentUpon>LoadingTransactionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserPageUI.xaml.cs">
-      <DependentUpon>UserPageUI.xaml</DependentUpon>
+    <Compile Include="View\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +168,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\CreditCardPinUI.xaml">
+    <Page Include="View\InsertPinPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -167,35 +176,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\EnterAmountUI.xaml">
+    <Page Include="View\EnterAmountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\FinalPageUI.xaml">
+    <Page Include="View\CompletedTransactionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\InsertCreditCardUI.xaml">
+    <Page Include="View\InsertCreditCardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\LogInUI.xaml">
+    <Page Include="View\LogInPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\SelectAccountUI.xaml">
+    <Page Include="View\SelectAccountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\SelectAmountUI.xaml">
+    <Page Include="View\SelectAmountPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\TransactionUI.xaml">
+    <Page Include="View\LoadingTransactionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\UserPageUI.xaml">
+    <Page Include="View\UserPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

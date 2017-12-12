@@ -3,14 +3,14 @@ using System.Windows.Input;
 using Windows.UI.Popups;
 using ATM.Data;
 using ATM.Data.Exceptions;
+using ATM.UI.View;
 
 namespace ATM.UI.Model
 {
     public class LoginModel : ObservableObject
     {
-        private readonly INavigationService _navigationService;
-        private string _accountNumber;
-        private string _password;
+        private string _accountNumber = "123456";
+        private string _password = "secret";
 
         public string AccountNumber
         {
@@ -34,12 +34,6 @@ namespace ATM.UI.Model
 
         public ICommand LogInCommand => new DelegateCommand(LogIn);
 
-
-        public LoginModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
-
         private async void LogIn(object obj)
         {
             // TODO: Verify Account Number and Password 
@@ -47,6 +41,9 @@ namespace ATM.UI.Model
             try
             {
                 var user = Authentication.Login(AccountNumber, Password);
+
+                BaseViewModel.LoggedUser = user;
+                BaseViewModel.PageViewer.Navigate(typeof(UserPage));
             }
             catch (AuthenticationException e)
             {
