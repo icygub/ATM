@@ -12,15 +12,16 @@ namespace ATM.Data
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public CheckingAccount CheckingAccount { get; }
-        public SavingsAccount SavingsAccount { get; }
-        public CreditCard CreditCard { get; }
+        public CheckingAccount CheckingAccount { get; set; }
+        public SavingsAccount SavingsAccount { get; set; }
+        public CreditCard CreditCard { get; set; }
         public bool Logged { get; internal set; }
 
         public User()
         {
-            SavingsAccount = new SavingsAccount();
-            CheckingAccount = new CheckingAccount();
+            //SavingsAccount = new SavingsAccount();
+            //CheckingAccount = new CheckingAccount();
+            //CreditCard = new CreditCard();
             Logged = false;
         }
 

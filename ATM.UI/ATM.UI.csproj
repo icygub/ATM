@@ -140,6 +140,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Assets\db.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="ATM.UI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

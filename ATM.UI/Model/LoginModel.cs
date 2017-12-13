@@ -9,8 +9,8 @@ namespace ATM.UI.Model
 {
     public class LoginModel : ObservableObject
     {
-        private string _accountNumber = "123456";
-        private string _password = "secret";
+        private string _accountNumber = "";
+        private string _password = "";
 
         public string AccountNumber
         {
@@ -36,8 +36,6 @@ namespace ATM.UI.Model
 
         private async void LogIn(object obj)
         {
-            // TODO: Verify Account Number and Password 
-
             try
             {
                 var user = Authentication.Login(AccountNumber, Password);

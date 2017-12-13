@@ -1,0 +1,23 @@
+﻿[
+  {
+    "Name": "Joe Doe",
+    "Username": null,
+    "Password": "secret",
+    "CheckingAccount": {
+      "Number": "123456789",
+      "Balance": 0.0,
+      "BalanceWarning": false
+    },
+    "SavingsAccount": {
+      "BalanceWarning": true,
+      "Number": "987654321",
+      "Balance": 0.0
+    },
+    "CreditCard": {
+      "Number": "987654321",
+      "Balance": 0.0,
+      "BalanceWarning": false
+    },
+    "Logged": false
+  }
+]

@@ -6,14 +6,12 @@ namespace ATM.Data
     public class CreditCard : IAccount
     {
         private double _balance;
-        public string Number { get; }
-        public double Balance => _balance;
+        public string Number { get; set; }
+        public double Balance { get; set; }
         public bool BalanceWarning => false;
 
         public CreditCard()
         {
-            var random = new Random();
-            Number = random.Next(1, 12345678).ToString();
         }
 
         public CreditCard(string number)
@@ -23,19 +21,28 @@ namespace ATM.Data
 
         public void Deposit(double amount)
         {
-            _balance += amount;
+            Balance += amount;
+            Commit();
         }
 
         public void Withdraw(double withdraw)
         {
-            if (withdraw > _balance) throw new InsufficientBalanceException();
-            _balance -= withdraw;
+            if (withdraw > Balance) throw new InsufficientBalanceException();
+            Balance -= withdraw;
+            Commit();
         }
 
         public void TransferTo(IAccount account, double amount)
         {
             Withdraw(amount);
             account.Deposit(amount);
+            Commit();
+        }
+
+        private async void Commit()
+        {
+            var db = Database.GetInstance();
+            await db.Save();
         }
     }
 }

@@ -16,7 +16,7 @@
         <Grid Background="White" Width="700" Height="700">
             <TextBox  HorizontalAlignment="Left" Margin="231,284,0,0" TextWrapping="Wrap" Text="{Binding AccountNumber, Mode=TwoWay}" VerticalAlignment="Top" Background="White" Foreground="Black" RenderTransformOrigin="-3.162,-0.719" Width="271" BorderBrush="#66000000"/>
             <TextBlock HorizontalAlignment="Left" Margin="260,138,0,0" TextWrapping="Wrap" Text="Log In" VerticalAlignment="Top" Foreground="#FF0A0101" FontSize="48"/>
-            <TextBox HorizontalAlignment="Left" Margin="231,383,0,0" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}" VerticalAlignment="Top" Background="White" Foreground="Black" RenderTransformOrigin="-3.162,-0.719" Width="271"  BorderBrush="#66000000"/>
+            <PasswordBox HorizontalAlignment="Left" Margin="231,383,0,0" Password="{Binding Password, Mode=TwoWay}" VerticalAlignment="Top" Background="White" Foreground="Black" RenderTransformOrigin="-3.162,-0.719" Width="271"  BorderBrush="#66000000"/>
             <TextBlock HorizontalAlignment="Left" Margin="231,252,0,0" TextWrapping="Wrap" Text="Account number" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="20" RenderTransformOrigin="-0.682,1.867"/>
             <TextBlock HorizontalAlignment="Left" Margin="231,356,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="20" RenderTransformOrigin="1.765,1.148"/>
             <TextBlock HorizontalAlignment="Left" Margin="171,574,0,0" TextWrapping="Wrap" Text="Don't have an account but wish to withdraw money?" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="20" RenderTransformOrigin="1.765,1.148" FontStyle="Italic"/>

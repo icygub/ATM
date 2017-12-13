@@ -1,5 +1,4 @@
-﻿using System;
-using ATM.Data.Exceptions;
+﻿using ATM.Data.Exceptions;
 
 namespace ATM.Data
 {
@@ -7,14 +6,11 @@ namespace ATM.Data
     {
         public bool BalanceWarning => Balance < 500.0;
 
-        private double _balance;
-        public string Number { get; }
-        public double Balance => _balance;
+        public string Number { get; set; }
+        public double Balance { get; set; }
 
         public SavingsAccount()
         {
-            var random = new Random();
-            Number = random.Next(1, 12345678).ToString();
         }
 
         public SavingsAccount(string number)
@@ -24,19 +20,28 @@ namespace ATM.Data
 
         public void Deposit(double amount)
         {
-            _balance += amount;
+            Balance += amount;
+            Commit();
         }
 
         public void Withdraw(double withdraw)
         {
-            if (withdraw > _balance) throw new InsufficientBalanceException();
-            _balance -= withdraw;
+            if (withdraw > Balance) throw new InsufficientBalanceException();
+            Balance -= withdraw;
+            Commit();
         }
 
         public void TransferTo(IAccount account, double amount)
         {
             Withdraw(amount);
             account.Deposit(amount);
+            Commit();
+        }
+
+        private async void Commit()
+        {
+            var db = Database.GetInstance();
+            await db.Save();
         }
     }
 }

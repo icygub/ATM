@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -28,7 +27,60 @@ namespace ATM.Data
 
         private async Task CreateFile()
         {
+            var tmpFile = await _storageFolder.TryGetItemAsync("db.json");
+
             _dbFile = await _storageFolder.CreateFileAsync("db.json", CreationCollisionOption.OpenIfExists);
+
+            if (tmpFile == null)
+            {
+                var list = new List<User>
+                {
+                    new User()
+                    {
+                        Name = "Joe Doe",
+                        Password = "secret",
+                        CheckingAccount = new CheckingAccount()
+                        {
+                            Number = "123456789",
+                            Balance = 5000
+                        },
+                        SavingsAccount = new SavingsAccount()
+                        {
+                            Number = "987654321",
+                            Balance = 5000
+                        },
+                        CreditCard = new CreditCard()
+                        {
+                            Number = "4242424242424242",
+                            Balance = 5000
+                        }
+                    },
+                    new User()
+                    {
+                        Name = "Jane Doe",
+                        Password = "secret",
+                        CheckingAccount = new CheckingAccount()
+                        {
+                            Number = "012345678",
+                            Balance = 6000
+                        },
+                        SavingsAccount = new SavingsAccount()
+                        {
+                            Number = "098765432",
+                            Balance = 5500
+                        },
+                        CreditCard = new CreditCard()
+                        {
+                            Number = "3232323232323232",
+                            Balance = 3000
+                        }
+                    }
+                };
+                var json = JsonConvert.SerializeObject(list);
+                await FileIO.WriteTextAsync(_dbFile, json);
+
+                _dbFile = await _storageFolder.CreateFileAsync("db.json", CreationCollisionOption.OpenIfExists);
+            }
         }
 
         private async void LoadDb()
@@ -36,28 +88,22 @@ namespace ATM.Data
             await CreateFile();
 
             var db = await FileIO.ReadTextAsync(_dbFile);
-            Debug.WriteLine("Reading File");
-            Debug.WriteLine(db);
-            Debug.WriteLine(JsonConvert.DeserializeObject<List<User>>(db));
 
             if (string.IsNullOrEmpty(db))
             {
-                Debug.WriteLine("Vazio");
                 _db = new List<User>();
             }
             else
             {
-                Debug.WriteLine("Serializou");
                 var deserializeObject = JsonConvert.DeserializeObject<List<User>>(db);
-                Debug.WriteLine(deserializeObject);
-
                 _db = deserializeObject;
             }
         }
 
-        public  async void CleanFile()
+        public async Task CleanFile()
         {
-            await FileIO.WriteTextAsync(_dbFile, "");
+            await _dbFile.DeleteAsync();
+            _instance = null;
         }
 
         private async Task SaveToFile()
@@ -71,7 +117,7 @@ namespace ATM.Data
             return _db.First(u => u.Username == username && u.Password == password);
         }
 
-        public async void Save()
+        public async Task Save()
         {
             await SaveToFile();
         }
