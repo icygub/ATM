@@ -57,7 +57,6 @@ namespace ATM.UI.Model
 
         private void WithdrawCreditCard(object obj)
         {
-
             SharedModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
         }
     }

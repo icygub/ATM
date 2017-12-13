@@ -20,7 +20,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="231,252,0,0" TextWrapping="Wrap" Text="Account number" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="20" RenderTransformOrigin="-0.682,1.867"/>
             <TextBlock HorizontalAlignment="Left" Margin="231,356,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="20" RenderTransformOrigin="1.765,1.148"/>
             <TextBlock HorizontalAlignment="Left" Margin="171,574,0,0" TextWrapping="Wrap" Text="Don't have an account but wish to withdraw money?" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="20" RenderTransformOrigin="1.765,1.148" FontStyle="Italic"/>
-            <Button Content="Click Here!" HorizontalAlignment="Left" Margin="301,628,0,0" VerticalAlignment="Top"   Background="Black" Height="36" RenderTransformOrigin="0.525,1.542" Foreground="White"/>
+            <Button Command="{Binding WithdrawCreditCardCommand}" Content="Click Here!" HorizontalAlignment="Left" Margin="301,628,0,0" VerticalAlignment="Top"   Background="Black" Height="36" RenderTransformOrigin="0.525,1.542" Foreground="White"/>
             <Button Command="{Binding LogInCommand}" Content="Log In" HorizontalAlignment="Left" Margin="395,464,0,0" VerticalAlignment="Top"  Background="#FF29CDB6" Height="41" Width="107" RenderTransformOrigin="0.703,0.396"/>
         </Grid>
     </Frame>

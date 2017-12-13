@@ -20,7 +20,7 @@
             <LineBreak/>
             <Run Text="       Insert Credit Card"/>
         </TextBlock>
-        <TextBox Visibility="{Binding ShowCreditCardBox}" HorizontalAlignment="Left" Margin="194,380,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay}" VerticalAlignment="Top" Width="321" Height="50" Foreground="#FF060000" Background="#66FFFFFF" BorderBrush="#66040000" FontSize="20"/>
+        <TextBox Visibility="{Binding ShowCreditCardBox}" HorizontalAlignment="Left" Margin="194,380,0,0" TextWrapping="Wrap" Text="{Binding CreditCard, Mode=TwoWay}" VerticalAlignment="Top" Width="321" Height="50" Foreground="#FF060000" Background="#66FFFFFF" BorderBrush="#66040000" FontSize="20"/>
         <Button Command="{Binding GoBackCommand}"  Content="Back" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="#FF3DC7D4" Foreground="Black" FontSize="25" Width="87" RenderTransformOrigin="0.624,-0.078"/>
         <Button Command="{Binding ConfirmCommand}"  Content="Confirm" HorizontalAlignment="Left" Margin="498,547,0,0" VerticalAlignment="Top" Background="#FF3DC7D4" Foreground="Black" FontSize="25" Width="137" RenderTransformOrigin="0.668,2.528" />
 

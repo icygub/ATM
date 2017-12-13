@@ -1,6 +1,9 @@
-﻿using ATM.UI.View;
+﻿using System;
+using ATM.UI.View;
 using System.Windows.Input;
+using Windows.UI.Popups;
 using ATM.Data;
+using ATM.Data.Exceptions;
 
 namespace ATM.UI.Model
 {
@@ -36,16 +39,26 @@ namespace ATM.UI.Model
 
         public ICommand ConfirmCommand => new DelegateCommand(Confirm);
 
-        public void Confirm(object obj)
+        public async void Confirm(object obj)
         {
-            if (SharedModel.NonLoggedUser)
+            try
             {
-                var user = Authentication.LoginWithCreditCard(CreditCard);
-                SharedModel.Transaction = SharedModel.Transactions.Withdraw;
-                SharedModel.TransactionAccount = user.CreditCard;
-            }
+                if (SharedModel.NonLoggedUser)
+                {
+                    var user = Authentication.LoginWithCreditCard(CreditCard);
+                    SharedModel.Transaction = SharedModel.Transactions.Withdraw;
+                    SharedModel.TransactionAccount = user.CreditCard;
+                }
 
-            SharedModel.PageViewer.Navigate(typeof(SelectAmountPage));
+                SharedModel.PageViewer.Navigate(typeof(SelectAmountPage));
+            }
+            catch (AuthenticationException e)
+            {
+                var message = new MessageDialog(e.Message);
+                await message.ShowAsync();
+                CreditCard = null;
+            }
+          
         }
     }
 }
