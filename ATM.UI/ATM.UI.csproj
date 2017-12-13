@@ -95,15 +95,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\BaseViewModel.cs" />
+    <Compile Include="Model\SharedModel.cs" />
     <Compile Include="Model\CompletedTransactionModel.cs" />
     <Compile Include="Model\DelegateCommand.cs" />
     <Compile Include="Model\EnterAmountModel.cs" />
     <Compile Include="Model\InsertCreditCardModel.cs" />
-    <Compile Include="Model\InsertPinModel.cs" />
     <Compile Include="Model\LoadTransactionModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\ObservableObject.cs" />
@@ -112,12 +111,6 @@
     <Compile Include="Model\UserPageModel.cs" />
     <Compile Include="Model\ViewModalLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\InsertPinPage.xaml.cs">
-      <DependentUpon>InsertPinPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\DepositMoneyUI.xaml.cs">
-      <DependentUpon>DepositMoneyUI.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\EnterAmountPage.xaml.cs">
       <DependentUpon>EnterAmountPage.xaml</DependentUpon>
     </Compile>
@@ -164,15 +157,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\InsertPinPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\DepositMoneyUI.xaml">
+    <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

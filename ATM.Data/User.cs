@@ -14,6 +14,7 @@ namespace ATM.Data
 
         public CheckingAccount CheckingAccount { get; }
         public SavingsAccount SavingsAccount { get; }
+        public CreditCard CreditCard { get; }
         public bool Logged { get; internal set; }
 
         public User()
@@ -27,6 +28,13 @@ namespace ATM.Data
         {
             SavingsAccount = savingsAccount;
             CheckingAccount = checkingAccount;
+        }
+
+        public User(CheckingAccount checkingAccount, SavingsAccount savingsAccount, CreditCard creditCard)
+        {
+            SavingsAccount = savingsAccount;
+            CheckingAccount = checkingAccount;
+            CreditCard = creditCard;
         }
 
     }

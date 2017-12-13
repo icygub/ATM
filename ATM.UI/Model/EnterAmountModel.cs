@@ -25,8 +25,7 @@ namespace ATM.UI.Model
 
         public void GoBack(object obj)
         {
-
-            BaseViewModel.PageViewer.Navigate(typeof(SelectAmountPage));
+            SharedModel.PageViewer.Navigate(typeof(SelectAmountPage));
         }
 
         public ICommand ClearCommand => new DelegateCommand(Clear);
@@ -40,11 +39,8 @@ namespace ATM.UI.Model
 
         public void Confirm(object obj)
         {
-            BaseViewModel.Amount = Double.Parse(Amount);
-            if (BaseViewModel.LoggedUser == null)
-                BaseViewModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
-            else
-                BaseViewModel.PageViewer.Navigate(typeof(LoadingTransactionPage));
+            SharedModel.Amount = Double.Parse(Amount);
+            SharedModel.PageViewer.Navigate(typeof(LoadingTransactionPage));
         }
     }
 }

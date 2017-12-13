@@ -10,26 +10,31 @@ namespace ATM.UI.Model
 
         public void SelectAmount(object obj)
         {
-            BaseViewModel.Amount = Double.Parse(obj.ToString());
-            if (BaseViewModel.LoggedUser == null)
-                BaseViewModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
-            else
-                BaseViewModel.PageViewer.Navigate(typeof(LoadingTransactionPage));
+            SharedModel.Amount = Double.Parse(obj.ToString());
+            SharedModel.PageViewer.Navigate(typeof(LoadingTransactionPage));
         }
 
         public ICommand SelectOtherAmountCommand => new DelegateCommand(SelectOtherAmount);
 
         public void SelectOtherAmount(object obj)
         {
-            BaseViewModel.PageViewer.Navigate(typeof(EnterAmountPage));
+            SharedModel.PageViewer.Navigate(typeof(EnterAmountPage));
         }
 
         public ICommand GoBackCommand => new DelegateCommand(GoBack);
 
         public void GoBack(object obj)
         {
-            BaseViewModel.TransactionAccount = null;
-            BaseViewModel.PageViewer.Navigate(typeof(SelectAccountPage));
+            SharedModel.TransactionAccount = null;
+            if (SharedModel.NonLoggedUser)
+            {
+                SharedModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
+            }
+            else
+            {
+                SharedModel.PageViewer.Navigate(typeof(SelectAccountPage));
+            }
+            
         }
     }
 }

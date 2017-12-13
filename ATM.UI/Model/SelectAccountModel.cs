@@ -6,22 +6,33 @@ namespace ATM.UI.Model
 {
     class SelectAccountModel:ObservableObject
     {
-        public User User => BaseViewModel.LoggedUser;
-        public bool IsATransfer => BaseViewModel.Transaction == BaseViewModel.Transactions.Transfer;
+        public User User => SharedModel.LoggedUser;
+        public bool ShowCreditCardButton => SharedModel.Transaction == SharedModel.Transactions.Withdraw;
+
+        public bool IsATransfer => SharedModel.Transaction == SharedModel.Transactions.Transfer;
 
         public ICommand SelectAcountCommand => new DelegateCommand(SelectAccount);
 
         private void SelectAccount(object obj)
         {
-            BaseViewModel.TransactionAccount = obj as IAccount;
-            BaseViewModel.PageViewer.Navigate(typeof(SelectAmountPage));
+            SharedModel.TransactionAccount = obj as IAccount;
+
+            if (SharedModel.TransactionAccount is CreditCard)
+            {
+                SharedModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
+            }
+            else
+            {
+                SharedModel.PageViewer.Navigate(typeof(SelectAmountPage));
+            }
+           
         }
 
         public ICommand GoBackCommand => new DelegateCommand(GoBack);
 
         private void GoBack(object obj)
         {
-            BaseViewModel.PageViewer.Navigate(typeof(UserPage));
+            SharedModel.PageViewer.Navigate(typeof(UserPage));
         }
     }
 }

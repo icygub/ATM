@@ -16,12 +16,12 @@ namespace ATM.UI.Model
         public async void Continue(object obj)
         {
 
-            switch (BaseViewModel.Transaction)
+            switch (SharedModel.Transaction)
             {
-                case BaseViewModel.Transactions.Withdraw:
+                case SharedModel.Transactions.Withdraw:
                     try
                     {
-                        BaseViewModel.TransactionAccount.Withdraw(BaseViewModel.Amount);
+                        SharedModel.TransactionAccount.Withdraw(SharedModel.Amount);
                     }
                     catch (InsufficientBalanceException e)
                     {
@@ -29,7 +29,7 @@ namespace ATM.UI.Model
                             new MessageDialog("Insufficient Funds.");
                         await messageBox.ShowAsync();
 
-                        BaseViewModel.PageViewer.Navigate(typeof(EnterAmountPage));
+                        SharedModel.PageViewer.Navigate(typeof(EnterAmountPage));
                         return;
 
                     }
@@ -39,30 +39,30 @@ namespace ATM.UI.Model
                             new MessageDialog("You cannot withdraw more than $500.00 of Checkings Account");
                         await messageBox.ShowAsync();
 
-                        BaseViewModel.PageViewer.Navigate(typeof(EnterAmountPage));
+                        SharedModel.PageViewer.Navigate(typeof(EnterAmountPage));
                         return;
                     }
                     break;
-                case BaseViewModel.Transactions.Deposit:
-                    BaseViewModel.TransactionAccount.Deposit(BaseViewModel.Amount);
+                case SharedModel.Transactions.Deposit:
+                    SharedModel.TransactionAccount.Deposit(SharedModel.Amount);
                     break;
-                case BaseViewModel.Transactions.Transfer:
+                case SharedModel.Transactions.Transfer:
                     IAccount transferToAccount;
 
-                    if (BaseViewModel.TransactionAccount is CheckingAccount)
+                    if (SharedModel.TransactionAccount is CheckingAccount)
                     {
-                        transferToAccount = BaseViewModel.LoggedUser.SavingsAccount;
+                        transferToAccount = SharedModel.LoggedUser.SavingsAccount;
                     }
                     else
                     {
-                        transferToAccount = BaseViewModel.LoggedUser.CheckingAccount;
+                        transferToAccount = SharedModel.LoggedUser.CheckingAccount;
                     }
                
-                    BaseViewModel.TransactionAccount.TransferTo(transferToAccount, BaseViewModel.Amount);
+                    SharedModel.TransactionAccount.TransferTo(transferToAccount, SharedModel.Amount);
                     break;
             }
 
-            BaseViewModel.PageViewer.Navigate(typeof(CompletedTransactionPage));
+            SharedModel.PageViewer.Navigate(typeof(CompletedTransactionPage));
         }
     }
 }

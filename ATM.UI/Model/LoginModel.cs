@@ -42,15 +42,23 @@ namespace ATM.UI.Model
             {
                 var user = Authentication.Login(AccountNumber, Password);
 
-                BaseViewModel.LoggedUser = user;
-                BaseViewModel.PageViewer.Navigate(typeof(UserPage));
+                SharedModel.LoggedUser = user;
+                SharedModel.PageViewer.Navigate(typeof(UserPage));
             }
             catch (AuthenticationException e)
             {
                 var dialog = new MessageDialog(e.Message);
                 await dialog.ShowAsync();
             }
-            
+
+        }
+
+        public ICommand WithdrawCreditCardCommand => new DelegateCommand(WithdrawCreditCard);
+
+        private void WithdrawCreditCard(object obj)
+        {
+
+            SharedModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
         }
     }
 }

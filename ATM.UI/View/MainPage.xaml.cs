@@ -2,14 +2,14 @@
 using ATM.UI.View;
 using Windows.UI.Xaml.Controls;
 
-namespace ATM.UI
+namespace ATM.UI.View
 {
     public sealed partial class MainPage : Page
     {
         public MainPage()
         {
             this.InitializeComponent();
-            BaseViewModel.PageViewer = PageViewer;
+            SharedModel.PageViewer = PageViewer;
             PageViewer.Navigate(typeof(LogInPage));
         }
     }

@@ -107,6 +107,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Authentication.cs" />
+    <Compile Include="CreditCard.cs" />
     <Compile Include="CheckingAccount.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Exceptions\AuthenticationException.cs" />
