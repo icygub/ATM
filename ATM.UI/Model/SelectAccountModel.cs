@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using ATM.Data;
+﻿using ATM.Data;
 using ATM.UI.View;
+using System.Windows.Input;
 
 namespace ATM.UI.Model
 {
     class SelectAccountModel:ObservableObject
     {
         public User User => BaseViewModel.LoggedUser;
+        public bool IsATransfer => BaseViewModel.Transaction == BaseViewModel.Transactions.Transfer;
 
         public ICommand SelectAcountCommand => new DelegateCommand(SelectAccount);
 
         private void SelectAccount(object obj)
         {
-            BaseViewModel.TransactionAccount = obj as Account;
+            BaseViewModel.TransactionAccount = obj as IAccount;
             BaseViewModel.PageViewer.Navigate(typeof(SelectAmountPage));
         }
 

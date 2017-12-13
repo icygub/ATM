@@ -11,11 +11,12 @@
     <Page.DataContext>
         <vm:SelectAccountModel/>
     </Page.DataContext>
-    
+
     <Grid Background="White" Width="700" Height="700">
         <TextBlock HorizontalAlignment="Left" Margin="206,88,0,0" TextWrapping="Wrap" Text="Select Account" VerticalAlignment="Top" FontSize="42" Width="287" Foreground="#FF060000" SelectionChanged="TextBlock_SelectionChanged"/>
         <Button Command="{Binding SelectAcountCommand}" CommandParameter="{Binding User.SavingsAccount}" Content="Savings Account" HorizontalAlignment="Left" Margin="175,399,0,0" VerticalAlignment="Top" Background="#FFF96E2C" Foreground="Black" FontSize="25" Width="358" Click="GoToSelectAmount"/>
         <Button Command="{Binding SelectAcountCommand}" CommandParameter="{Binding User.CheckingAccount}" Content="Checking Account" HorizontalAlignment="Left" Margin="175,266,0,0" VerticalAlignment="Top" Background="#FF3DC7D4" Foreground="Black" FontSize="25" Width="358" Click="GoToSelectAmount"/>
         <Button Command="{Binding GoBackCommand}" Content="Back" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Background="#FFFFF52D" Foreground="Black" FontSize="25" Width="87" RenderTransformOrigin="0.624,-0.078"/>
+        <TextBlock Visibility="{Binding IsATransfer}" HorizontalAlignment="Left" Margin="190,165,0,0" TextWrapping="Wrap" Text="you want to make a transaction from" VerticalAlignment="Top" FontSize="20" Width="345" Foreground="#FF060000" SelectionChanged="TextBlock_SelectionChanged"/>
     </Grid>
 </Page>

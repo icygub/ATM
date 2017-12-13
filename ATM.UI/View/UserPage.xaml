@@ -14,10 +14,9 @@
 
     <Frame Margin="0,0,-1.5,0" Width="787.5">
         <Grid Background="White" Height="700" Margin="-51,10,-0.5,-10">
-            <Rectangle Fill="White" HorizontalAlignment="Left" Height="360" Margin="345,83,0,0" Stroke="Black" VerticalAlignment="Top" Width="455"/>
-            <Button Command="{Binding WithdrawCommand}" Content="Withdraw" HorizontalAlignment="Left" Margin="391,140,0,0" VerticalAlignment="Top" Background="#33166BFF" BorderBrush="#FF0948EE" Foreground="#FF020000" Height="75" Width="118" FontSize="20" />
-            <Button Command="{Binding TransferCommand}" Content="Transfer Money" HorizontalAlignment="Left" Margin="578,140,0,0" VerticalAlignment="Top" Background="#33166BFF" BorderBrush="#FF0948EE" Foreground="#FF020000" Height="75" Width="165" FontSize="20"/>
-            <Button Command="{Binding DepositCommand}"  Content="Deposit Money" HorizontalAlignment="Left" Margin="578,298,0,0" VerticalAlignment="Top" Background="#33166BFF" BorderBrush="#FF0948EE" Foreground="#FF020000" Height="75" Width="165" FontSize="20" />
+            <Button Command="{Binding WithdrawCommand}" Content="Withdraw" HorizontalAlignment="Left" Margin="620,145,0,0" VerticalAlignment="Top" Background="#33166BFF" BorderBrush="#FF0948EE" Foreground="#FF020000" Height="75" Width="165" FontSize="20" />
+            <Button Command="{Binding TransferCommand}" Content="Transfer Money" HorizontalAlignment="Left" Margin="620,352,0,0" VerticalAlignment="Top" Background="#33166BFF" BorderBrush="#FF0948EE" Foreground="#FF020000" Height="75" Width="165" FontSize="20"/>
+            <Button Command="{Binding DepositCommand}"  Content="Deposit Money" HorizontalAlignment="Left" Margin="620,250,0,0" VerticalAlignment="Top" Background="#33166BFF" BorderBrush="#FF0948EE" Foreground="#FF020000" Height="75" Width="165" FontSize="20" />
             <TextBlock HorizontalAlignment="Left" Margin="40,149,0,0" TextWrapping="Wrap" Text="Account Name" VerticalAlignment="Top" Foreground="#FF0A0101" FontSize="36" />
             <TextBlock HorizontalAlignment="Left" Margin="40,346,0,0" TextWrapping="Wrap" Text="Savings Balance" VerticalAlignment="Top" Foreground="#FF0A0101" FontSize="36"/>
             <TextBlock HorizontalAlignment="Left" Margin="40,517,0,0" TextWrapping="Wrap" Text="Checking Balance" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="36"/>
@@ -25,6 +24,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="98,431,0,0" TextWrapping="Wrap" Text="{Binding User.SavingsAccount.Balance}" VerticalAlignment="Top"  Foreground="#FF0A0101" FontSize="24"/>
             <TextBlock HorizontalAlignment="Left" Margin="98,611,0,0" TextWrapping="Wrap" Text="{Binding User.CheckingAccount.Balance}" VerticalAlignment="Top" Foreground="#FF0A0101" FontSize="24"/>
             <Button Command="{Binding LogoutCommand}" Content="Exit" HorizontalAlignment="Left" Margin="40,55,0,0" VerticalAlignment="Top" Foreground="White" Background="#FF5ACFF1" FontSize="20" Width="71" />
+            <TextBlock Visibility="{Binding SavingWarning}" HorizontalAlignment="Left" Margin="41,387,0,0" TextWrapping="Wrap" Text="(Balance below $500 - balance will not collect interest)" VerticalAlignment="Top" Foreground="Red" FontSize="18"/>
         </Grid>
     </Frame>
 </Page>

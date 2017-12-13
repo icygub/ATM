@@ -15,7 +15,7 @@ namespace ATM.UI.Model
         public static Frame PageViewer = null;
         public static User LoggedUser = null;
         public static Transactions? Transaction = null;
-        public static Account TransactionAccount = null;
+        public static IAccount TransactionAccount = null;
         public static double Amount = 0;
     }
 }

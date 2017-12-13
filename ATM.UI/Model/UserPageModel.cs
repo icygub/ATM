@@ -7,6 +7,7 @@ namespace ATM.UI.Model
     class UserPageModel : ObservableObject
     {
         public User User => BaseViewModel.LoggedUser;
+        public bool SavingWarning => BaseViewModel.LoggedUser.SavingsAccount.BalanceWarning;
 
         public ICommand WithdrawCommand => new DelegateCommand(Withdraw);
 
@@ -29,7 +30,7 @@ namespace ATM.UI.Model
         private void Transfer(object obj)
         {
             BaseViewModel.Transaction = BaseViewModel.Transactions.Transfer;
-            BaseViewModel.PageViewer.Navigate(typeof(SelectAmountPage));
+            BaseViewModel.PageViewer.Navigate(typeof(SelectAccountPage));
         }
 
         public ICommand LogoutCommand => new DelegateCommand(Logout);
@@ -37,7 +38,7 @@ namespace ATM.UI.Model
         private void Logout(object obj)
         {
             BaseViewModel.LoggedUser = null;
-            BaseViewModel.PageViewer.Navigate(typeof(SelectAccountPage));
+            BaseViewModel.PageViewer.Navigate(typeof(LogInPage));
         }
 
 

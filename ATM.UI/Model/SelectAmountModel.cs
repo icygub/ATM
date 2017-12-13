@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ATM.UI.View;
+using System;
 using System.Windows.Input;
-using ATM.UI.View;
 
 namespace ATM.UI.Model
 {
@@ -15,7 +11,10 @@ namespace ATM.UI.Model
         public void SelectAmount(object obj)
         {
             BaseViewModel.Amount = Double.Parse(obj.ToString());
-            BaseViewModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
+            if (BaseViewModel.LoggedUser == null)
+                BaseViewModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
+            else
+                BaseViewModel.PageViewer.Navigate(typeof(LoadingTransactionPage));
         }
 
         public ICommand SelectOtherAmountCommand => new DelegateCommand(SelectOtherAmount);

@@ -41,7 +41,10 @@ namespace ATM.UI.Model
         public void Confirm(object obj)
         {
             BaseViewModel.Amount = Double.Parse(Amount);
-            BaseViewModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
+            if (BaseViewModel.LoggedUser == null)
+                BaseViewModel.PageViewer.Navigate(typeof(InsertCreditCardPage));
+            else
+                BaseViewModel.PageViewer.Navigate(typeof(LoadingTransactionPage));
         }
     }
 }
